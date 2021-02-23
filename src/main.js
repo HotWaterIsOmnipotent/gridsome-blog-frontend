@@ -17,5 +17,12 @@ export default function (Vue, { router, head, isClient }) {
       }
     }
   })
+
+  // Add a meta tag
+  head.meta.push({
+    'http-equiv': 'Content-Security-Policy',
+    content: 'upgrade-insecure-requests'
+  })
+
   Vue.component('Layout', DefaultLayout)
 }
