@@ -63,6 +63,9 @@
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
   name: 'ContactPage',
   data () {
@@ -76,9 +79,19 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
+    async onSubmit() {
       console.log(this.form)
-      console.log(123123132)
+      try {
+        const { data } = await axios({
+          method: 'POST',
+          url: `${this.GRIDSOME_API_URL}/contacts`,
+          data: this.form
+        })
+        window.alert('发送成功')
+      } catch (error) {
+        console.log(error)
+        window.alert('发送失败')
+      }
     }
   }
 }
